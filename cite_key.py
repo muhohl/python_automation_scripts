@@ -1,4 +1,10 @@
 '''
+A python script that changes cite key from markdown format '@...' to org-roam format 'id:...'.
+It looks through files in my Zettelkasten folder, which contains all my literature notes.
+If a note that I have cited in the markdown format exists the markdown formation is replaced
+with the link to my literature note. If no literature not exists, the markdown format is
+left unchanged.
+
 Needs a little bit more testing. But I'm quiet optimistic that most of it should work.
 But the current algorithm is quiet slow, with a three fold nested for loop.
 '''
