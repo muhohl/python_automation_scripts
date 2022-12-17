@@ -1,6 +1,20 @@
 '''
-Needs a little bit more testing. But I'm quiet optimistic that most of it should work.
-But the current algorithm is quiet slow, with a three fold nested for loop.
+Python script that transforms the '@...' markdown style citation into an org-roam node link,
+if that node exists in your org-roam database.
+If the node doesn't exist the markdown node is maintained
+
+! Input .org file will be overwritten by the output. !
+
+Workflow:
+    1. Create org file from quarto .qmd notebook
+    2. copy .org into notes directory
+    3. cd terminal into notes directory
+    4. run cite_key.py and enter .org file name when prompted
+    5. Create seperate org-roam file with name of the paper
+    6. Copy content from .org file created by python script into org-roam file in step 5
+
+Once the node file is created I can just rerun the python script on that file, and new
+citation links will be inserted.
 '''
 
 import os
@@ -28,10 +42,8 @@ matches = re.findall("@\w+", textfile)
 for i in range(len(matches)):
     matches[i] = matches[i].replace("@", "")
 
-print(path)
 # replaces citation with id from the lit notes.
 for i in range(len(matches)):
-    print(i)
     for j in range(len(dir_list)):
         if matches[i] in dir_list[j]:
             roam_path = path+dir_list[j]
